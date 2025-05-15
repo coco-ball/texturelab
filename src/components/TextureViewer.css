@@ -12,10 +12,10 @@
 }
 
 .texture-wrapper {
-  position: relative;
+  /* position: relative; */
   width: 960px;
   height: 560px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .texture-layer {

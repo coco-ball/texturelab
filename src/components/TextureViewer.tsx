@@ -46,6 +46,8 @@ export default function TextureViewer() {
           width: texture.size[0],
           height: texture.size[1],
           position: "relative",
+          overflow: "visible",
+          // perspective: "1000px",
         }}
       >
         {texture.layers.map((layer, i) => (
@@ -53,17 +55,29 @@ export default function TextureViewer() {
             key={i}
             src={`/textures/${layer.src.replace(/^\.\/|^\/+/, "")}`}
             alt={layer.name}
-            className="texture-layer"
             style={{
               mixBlendMode: layer.blendMode,
               opacity: layer.opacity,
-              transform: `translate(${offset * i}px, ${offset * i}px)`,
               position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
+              top: "50%",
+              left: "50%",
+              width: `${texture.size[0]}px`,
+              height: `${texture.size[1]}px`,
               objectFit: "cover",
+              transform: `
+          translate(-50%, -50%)
+          translate(${offset * i * 5}px, ${offset * i * 0}px)
+        `,
+              //       transform: `
+              //   translate(-50%, -50%)
+              //   translateZ(${offset * i}px)
+              //   translate(${offset * i * 2}px, ${offset * i * 0}px)
+              //   scale(${1 - i * 0.02})
+              // `,
+              // filter: `blur(${i * offset * 0.05}px)`,
+              transition: "transform 0.3s ease, filter 0.3s ease",
+              transformStyle: "preserve-3d",
+              pointerEvents: "none",
             }}
           />
         ))}
@@ -73,7 +87,7 @@ export default function TextureViewer() {
         <input
           type="range"
           min="0"
-          max="30"
+          max="50"
           value={offset}
           onChange={(e) => setOffset(Number(e.target.value))}
         />
