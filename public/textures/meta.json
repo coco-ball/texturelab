@@ -1,0 +1,31 @@
+{
+  "textures": [
+    {
+      "id": "skin",
+      "title": "skin-1",
+      "description": "Detailed skin with goosebumps and hair.",
+      "size": [960, 560],
+      "baseColor": "rgba(250, 224, 214, 1)",
+      "layers": [
+        {
+          "src": "./skin/skin1.png",
+          "name": "Skin",
+          "blendMode": "soft-light",
+          "opacity": 1
+        },
+        {
+          "src": "./skin/skin2.png",
+          "name": "Goosebumps",
+          "blendMode": "color-burn",
+          "opacity": 1
+        },
+        {
+          "src": "./skin/skin3.png",
+          "name": "Hair",
+          "blendMode": "plus-darker",
+          "opacity": 0.3
+        }
+      ]
+    }
+  ]
+}
