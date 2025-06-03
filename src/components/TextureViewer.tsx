@@ -1,56 +1,21 @@
-import { useEffect, useState } from "react";
-import "./TextureViewer.css";
+import { useState } from "react";
+import type { TextureData } from "../types";
 
-interface ImageLayer {
-  type: "img";
-  src: string;
-  name: string;
-  blendMode: React.CSSProperties["mixBlendMode"];
-  opacity: number;
-}
-
-interface ColorLayer {
-  type: "color";
-  baseColor: string;
-}
-
-type TextureLayer = ImageLayer | ColorLayer;
-
-interface TextureData {
-  id: string;
-  title: string;
-  description: string;
-  size: [number, number];
-  baseColor?: string;
-  layers: TextureLayer[];
-}
-
-export default function TextureViewer() {
-  const [textures, setTextures] = useState<TextureData[]>([]);
-  const [index, setIndex] = useState(0);
+export default function TextureViewer({
+  selectedTexture,
+}: {
+  selectedTexture: TextureData;
+}) {
   const [offset, setOffset] = useState(0);
   const [showGridView, setShowGridView] = useState(false);
 
-  useEffect(() => {
-    fetch("../../public/textures/meta.json")
-      .then((res) => res.json())
-      .then((data) => setTextures(data.textures))
-      .catch((err) => console.error("Failed to load meta.json", err));
-  }, []);
-
-  if (textures.length === 0) return <p>Loading...</p>;
-
-  const texture = textures[index];
-
-  const handlePrev = () =>
-    setIndex((i) => (i - 1 + textures.length) % textures.length);
-  const handleNext = () => setIndex((i) => (i + 1) % textures.length);
+  const texture = selectedTexture;
 
   return (
     <div className="viewer-container">
       <button
         className="toggle-grid-btn"
-        onClick={() => setShowGridView((prev) => !prev)}
+        onClick={() => setShowGridView(!showGridView)}
       >
         {showGridView ? "Back" : "Layers"}
       </button>
@@ -62,15 +27,11 @@ export default function TextureViewer() {
             .map((layer, i) => (
               <img
                 key={i}
-                src={`/textures/${(layer as ImageLayer).src.replace(
-                  /^\.\/|^\/+/,
-                  ""
-                )}`}
-                alt={(layer as ImageLayer).name}
+                src={`/textures/${layer.src?.replace(/^\.\/|^\/+/, "")}`}
+                alt={layer.name}
                 style={{
                   width: "300px",
                   objectFit: "cover",
-                  // borderRadius: "4px",
                   boxShadow: "0 2px 5px rgba(0,0,0,0.15)",
                   mixBlendMode: "normal",
                   opacity: 1,
@@ -84,10 +45,11 @@ export default function TextureViewer() {
             className="texture-wrapper"
             style={{
               backgroundColor: texture.baseColor || "#000",
-              width: texture.size[0],
-              height: texture.size[1],
+              width: texture.size?.[0] || 960,
+              height: texture.size?.[1] || 540,
               position: "relative",
               overflow: "visible",
+              margin: "0 auto",
             }}
           >
             {texture.layers.map((layer, i) => {
@@ -96,13 +58,12 @@ export default function TextureViewer() {
                 boxShadow: "10px 30px 8px rgba(0, 0, 0, 0.15)",
                 top: "50%",
                 left: "50%",
-                width: `${texture.size[0]}px`,
-                height: `${texture.size[1]}px`,
+                width: `${texture.size?.[0] || 960}px`,
+                height: `${texture.size?.[1] || 540}px`,
                 filter: `blur(${i * offset * 0.03}px)`,
-                transform: `
-                  translate(-50%, -50%)
-                  translate(${i * offset * 5}px, 0)
-                `,
+                transform: `translate(-50%, -50%) translate(${
+                  i * offset * 5
+                }px, 0)`,
                 transition: "transform 0.3s ease, filter 0.3s ease",
                 pointerEvents: "none",
               };
@@ -111,10 +72,7 @@ export default function TextureViewer() {
                 return (
                   <div
                     key={i}
-                    style={{
-                      ...commonStyle,
-                      backgroundColor: layer.baseColor,
-                    }}
+                    style={{ ...commonStyle, backgroundColor: layer.baseColor }}
                   />
                 );
               }
@@ -122,12 +80,12 @@ export default function TextureViewer() {
               return (
                 <img
                   key={i}
-                  src={`/textures/${layer.src.replace(/^\.\/|^\/+/, "")}`}
+                  src={`/textures/${layer.src?.replace(/^\.\/|^\/+/, "")}`}
                   alt={layer.name}
                   style={{
                     ...commonStyle,
-                    mixBlendMode: layer.blendMode,
-                    opacity: layer.opacity,
+                    mixBlendMode: layer.blendMode ?? "normal",
+                    opacity: layer.opacity ?? 1,
                     objectFit: "cover",
                   }}
                 />
@@ -143,7 +101,7 @@ export default function TextureViewer() {
                     <>
                       {i} {layer.name} {layer.blendMode?.replace("-", " ")}
                     </>
-                  ) : layer.type === "color" ? (
+                  ) : (
                     <>
                       base color
                       <span
@@ -158,7 +116,7 @@ export default function TextureViewer() {
                         }}
                       />
                     </>
-                  ) : null}
+                  )}
                 </li>
               ))}
             </ul>
@@ -170,11 +128,6 @@ export default function TextureViewer() {
               value={offset}
               onChange={(e) => setOffset(Number(e.target.value))}
             />
-          </div>
-
-          <div className="nav-buttons">
-            <button onClick={handlePrev}>{"<"}</button>
-            <button onClick={handleNext}>{">"}</button>
           </div>
         </>
       )}

@@ -1,10 +1,10 @@
 {
   "textures": [
     {
-      "id": "skin",
-      "title": "skin-1",
+      "id": "S01-S3",
+      "title": "Hairy Skin",
       "description": "Detailed skin with goosebumps and hair.",
-      "size": [960, 560],
+      "thumbnail": "./skin/thumbnail.png",
       "layers": [
         {
           "type": "color",
@@ -34,10 +34,10 @@
       ]
     },
     {
-      "id": "eye",
-      "title": "eye-1",
-      "description": "Detailed skin with goosebumps and hair.",
-      "size": [960, 560],
+      "id": "B01-S3",
+      "title": "Eye Whites",
+      "description": "Bluish eye whites threaded with blood vessels.",
+      "thumbnail": "./eye/thumbnail.png",
       "layers": [
         {
           "type": "color",
@@ -67,10 +67,10 @@
       ]
     },
     {
-      "id": "head",
-      "title": "head-1",
-      "description": "Detailed skin with goosebumps and hair.",
-      "size": [960, 560],
+      "id": "S02-S5",
+      "title": "Buzz Cut",
+      "description": "Tendon-revealing skin and a cleanly shaved head.",
+      "thumbnail": "./head/thumbnail.png",
       "layers": [
         {
           "type": "color",
@@ -114,10 +114,10 @@
       ]
     },
     {
-      "id": "teeth",
-      "title": "teeth-1",
-      "description": "Detailed skin with goosebumps and hair.",
-      "size": [960, 560],
+      "id": "B02-S6",
+      "title": "Solid Teeth",
+      "description": "Radiant, healthy teeth with a subtle translucence.",
+      "thumbnail": "./teeth/thumbnail.png",
       "layers": [
         {
           "type": "color",
