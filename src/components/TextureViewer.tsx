@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
 import "./TextureViewer.css";
 
-interface TextureLayer {
+interface ImageLayer {
+  type: "img";
   src: string;
   name: string;
   blendMode: React.CSSProperties["mixBlendMode"];
   opacity: number;
 }
+
+interface ColorLayer {
+  type: "color";
+  baseColor: string;
+}
+
+type TextureLayer = ImageLayer | ColorLayer;
 
 interface TextureData {
   id: string;
@@ -21,6 +29,7 @@ export default function TextureViewer() {
   const [textures, setTextures] = useState<TextureData[]>([]);
   const [index, setIndex] = useState(0);
   const [offset, setOffset] = useState(0);
+  const [showGridView, setShowGridView] = useState(false);
 
   useEffect(() => {
     fetch("../../public/textures/meta.json")
@@ -39,71 +48,136 @@ export default function TextureViewer() {
 
   return (
     <div className="viewer-container">
-      <div
-        className="texture-wrapper"
-        style={{
-          backgroundColor: texture.baseColor || "#000",
-          width: texture.size[0],
-          height: texture.size[1],
-          position: "relative",
-          overflow: "visible",
-          // perspective: "1000px",
-        }}
+      <button
+        className="toggle-grid-btn"
+        onClick={() => setShowGridView((prev) => !prev)}
       >
-        {texture.layers.map((layer, i) => (
-          <img
-            key={i}
-            src={`/textures/${layer.src.replace(/^\.\/|^\/+/, "")}`}
-            alt={layer.name}
+        {showGridView ? "Back" : "Layers"}
+      </button>
+
+      {showGridView ? (
+        <div className="grid-view">
+          {texture.layers
+            .filter((l) => l.type === "img")
+            .map((layer, i) => (
+              <img
+                key={i}
+                src={`/textures/${(layer as ImageLayer).src.replace(
+                  /^\.\/|^\/+/,
+                  ""
+                )}`}
+                alt={(layer as ImageLayer).name}
+                style={{
+                  width: "300px",
+                  objectFit: "cover",
+                  // borderRadius: "4px",
+                  boxShadow: "0 2px 5px rgba(0,0,0,0.15)",
+                  mixBlendMode: "normal",
+                  opacity: 1,
+                }}
+              />
+            ))}
+        </div>
+      ) : (
+        <>
+          <div
+            className="texture-wrapper"
             style={{
-              mixBlendMode: layer.blendMode,
-              opacity: layer.opacity,
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              width: `${texture.size[0]}px`,
-              height: `${texture.size[1]}px`,
-              objectFit: "cover",
-              transform: `
-          translate(-50%, -50%)
-          translate(${offset * i * 5}px, ${offset * i * 0}px)
-        `,
-              //       transform: `
-              //   translate(-50%, -50%)
-              //   translateZ(${offset * i}px)
-              //   translate(${offset * i * 2}px, ${offset * i * 0}px)
-              //   scale(${1 - i * 0.02})
-              // `,
-              // filter: `blur(${i * offset * 0.05}px)`,
-              transition: "transform 0.3s ease, filter 0.3s ease",
-              transformStyle: "preserve-3d",
-              pointerEvents: "none",
+              backgroundColor: texture.baseColor || "#000",
+              width: texture.size[0],
+              height: texture.size[1],
+              position: "relative",
+              overflow: "visible",
             }}
-          />
-        ))}
-      </div>
+          >
+            {texture.layers.map((layer, i) => {
+              const commonStyle: React.CSSProperties = {
+                position: "absolute",
+                boxShadow: "10px 30px 8px rgba(0, 0, 0, 0.15)",
+                top: "50%",
+                left: "50%",
+                width: `${texture.size[0]}px`,
+                height: `${texture.size[1]}px`,
+                filter: `blur(${i * offset * 0.03}px)`,
+                transform: `
+                  translate(-50%, -50%)
+                  translate(${i * offset * 5}px, 0)
+                `,
+                transition: "transform 0.3s ease, filter 0.3s ease",
+                pointerEvents: "none",
+              };
 
-      <div className="slider-caption">
-        <input
-          type="range"
-          min="0"
-          max="50"
-          value={offset}
-          onChange={(e) => setOffset(Number(e.target.value))}
-        />
-        <ul className="caption-list">
-          {texture.layers.map((layer, i) => (
-            <li key={i}>
-              {layer.name} — <code>{layer.blendMode}</code>
-            </li>
-          ))}
-        </ul>
-      </div>
+              if (layer.type === "color") {
+                return (
+                  <div
+                    key={i}
+                    style={{
+                      ...commonStyle,
+                      backgroundColor: layer.baseColor,
+                    }}
+                  />
+                );
+              }
 
-      <div className="nav-buttons">
-        <button onClick={handlePrev}>{"<"}</button>
-        <button onClick={handleNext}>{">"}</button>
-      </div>
+              return (
+                <img
+                  key={i}
+                  src={`/textures/${layer.src.replace(/^\.\/|^\/+/, "")}`}
+                  alt={layer.name}
+                  style={{
+                    ...commonStyle,
+                    mixBlendMode: layer.blendMode,
+                    opacity: layer.opacity,
+                    objectFit: "cover",
+                  }}
+                />
+              );
+            })}
+          </div>
+
+          <div className="slider-caption">
+            <ul className="caption-list">
+              {texture.layers.map((layer, i) => (
+                <li key={i}>
+                  {layer.type === "img" ? (
+                    <>
+                      {i} {layer.name} {layer.blendMode?.replace("-", " ")}
+                    </>
+                  ) : layer.type === "color" ? (
+                    <>
+                      base color
+                      <span
+                        style={{
+                          display: "inline-block",
+                          width: "0.6em",
+                          height: "0.6em",
+                          backgroundColor: layer.baseColor,
+                          borderRadius: "1px",
+                          marginLeft: "0.5em",
+                          border: "1px solid black",
+                        }}
+                      />
+                    </>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+            <input
+              className="slider"
+              type="range"
+              min="0"
+              max="20"
+              value={offset}
+              onChange={(e) => setOffset(Number(e.target.value))}
+            />
+          </div>
+
+          <div className="nav-buttons">
+            <button onClick={handlePrev}>{"<"}</button>
+            <button onClick={handleNext}>{">"}</button>
+          </div>
+        </>
+      )}
     </div>
   );
 }

@@ -8,14 +8,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  /* padding: 10px; */
 }
 
 .texture-wrapper {
   /* position: relative; */
-  width: 960px;
+  /* width: 960px; */
   height: 560px;
-  /* overflow: hidden; */
+  /* overflow: visible; */
 }
 
 .texture-layer {
@@ -25,16 +25,32 @@
   object-fit: cover;
 }
 
+.slider {
+  width: 100%;
+  height: 10px;
+  background: #ededed;
+  border-radius: 8px;
+  outline: none;
+  /* transition: background 450ms ease-in; */
+  -webkit-appearance: none;
+  accent-color: #b5b5b5;
+}
+
 .slider-caption {
-  margin-top: 20px;
+  /* margin-bottom: 0px; */
   text-align: center;
 }
 
 .caption-list {
+  width: 960px;
+  display: flex;
+  justify-content: space-between;
   list-style: none;
   padding: 0;
-  margin-top: 10px;
-  font-family: monospace;
+  margin-top: 46px;
+  margin-bottom: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;
 }
 
 .nav-buttons {
@@ -43,8 +59,16 @@
 
 .nav-buttons button {
   margin: 0 10px;
-  padding: 8px 16px;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 200;
+  background-color: white;
+  border-radius: 2px;
+  border: 1px solid black;
+}
+
+.nav-buttons button:hover {
+  cursor: pointer;
+  background-color: rgb(236, 236, 236);
 }
 
 .logo {
@@ -81,4 +105,26 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.toggle-grid-btn {
+  margin-bottom: 1rem;
+  padding: 0.25em 0.5em;
+  font-size: 12px;
+  background: white;
+  border-radius: 2px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.toggle-grid-btn:hover {
+  background-color: rgb(236, 236, 236);
+}
+
+.grid-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  justify-items: center;
 }

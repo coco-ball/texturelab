@@ -5,25 +5,165 @@
       "title": "skin-1",
       "description": "Detailed skin with goosebumps and hair.",
       "size": [960, 560],
-      "baseColor": "rgba(250, 224, 214, 1)",
       "layers": [
         {
+          "type": "color",
+          "baseColor": "rgba(250, 224, 214, 1)"
+        },
+        {
+          "type": "img",
           "src": "./skin/skin1.png",
-          "name": "Skin",
+          "name": "skin",
           "blendMode": "soft-light",
           "opacity": 1
         },
         {
+          "type": "img",
           "src": "./skin/skin2.png",
-          "name": "Goosebumps",
+          "name": "goosebumps",
           "blendMode": "color-burn",
           "opacity": 1
         },
         {
+          "type": "img",
           "src": "./skin/skin3.png",
-          "name": "Hair",
+          "name": "hair",
           "blendMode": "plus-darker",
           "opacity": 0.3
+        }
+      ]
+    },
+    {
+      "id": "eye",
+      "title": "eye-1",
+      "description": "Detailed skin with goosebumps and hair.",
+      "size": [960, 560],
+      "layers": [
+        {
+          "type": "color",
+          "baseColor": "rgba(251, 252, 251, 1)"
+        },
+        {
+          "type": "img",
+          "src": "./eye/eye1.png",
+          "name": "",
+          "blendMode": "multiply",
+          "opacity": 1
+        },
+        {
+          "type": "img",
+          "src": "./eye/eye2.png",
+          "name": "",
+          "blendMode": "overlay",
+          "opacity": 1
+        },
+        {
+          "type": "img",
+          "src": "./eye/eye3.png",
+          "name": "",
+          "blendMode": "color-burn",
+          "opacity": 0.9
+        }
+      ]
+    },
+    {
+      "id": "head",
+      "title": "head-1",
+      "description": "Detailed skin with goosebumps and hair.",
+      "size": [960, 560],
+      "layers": [
+        {
+          "type": "color",
+          "baseColor": "rgba(178, 160, 138, 1)"
+        },
+        {
+          "type": "img",
+          "src": "./head/head1.png",
+          "name": "blood vessels",
+          "blendMode": "soft-light",
+          "opacity": 1
+        },
+        {
+          "type": "img",
+          "src": "./head/head2.png",
+          "name": "",
+          "blendMode": "darken",
+          "opacity": 0.6
+        },
+        {
+          "type": "img",
+          "src": "./head/head3.png",
+          "name": "",
+          "blendMode": "overlay",
+          "opacity": 1
+        },
+        {
+          "type": "img",
+          "src": "./head/head4.png",
+          "name": "",
+          "blendMode": "lighten",
+          "opacity": 1
+        },
+        {
+          "type": "img",
+          "src": "./head/head5.png",
+          "name": "hair",
+          "blendMode": "multiply",
+          "opacity": 1
+        }
+      ]
+    },
+    {
+      "id": "teeth",
+      "title": "teeth-1",
+      "description": "Detailed skin with goosebumps and hair.",
+      "size": [960, 560],
+      "layers": [
+        {
+          "type": "color",
+          "baseColor": "rgba(254, 248, 236, 1)"
+        },
+        {
+          "type": "img",
+          "src": "./teeth/teeth1.png",
+          "name": "base",
+          "blendMode": "plus-darker",
+          "opacity": 1
+        },
+        {
+          "type": "img",
+          "src": "./teeth/teeth2.png",
+          "name": "shade",
+          "blendMode": "plus-darker",
+          "opacity": 1
+        },
+        {
+          "type": "img",
+          "src": "./teeth/teeth3.png",
+          "name": "",
+          "blendMode": "overlay",
+          "opacity": 0.3
+        },
+        {
+          "type": "img",
+          "src": "./teeth/teeth4.png",
+          "name": "",
+          "blendMode": "plus-lighter",
+          "opacity": 0.1
+        },
+        {
+          "type": "img",
+          "src": "./teeth/teeth5.png",
+          "name": "",
+          "blendMode": "color-dodge",
+          "opacity": 0.26
+        },
+        {
+          "type": "img",
+          "src": "./teeth/teeth6.png",
+          "name": "",
+          "blendMode": "soft-light",
+          "opacity": 0.85
         }
       ]
     }
