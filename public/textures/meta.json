@@ -1,7 +1,7 @@
 {
   "textures": [
     {
-      "id": "S01-S3",
+      "id": "S01-D04",
       "title": "Hairy Skin",
       "description": "Detailed skin with goosebumps and hair.",
       "thumbnail": "./skin/thumbnail.png",
@@ -41,40 +41,47 @@
       ]
     },
     {
-      "id": "B01-S3",
+      "id": "B01-D04",
       "title": "Eye Whites",
       "description": "Bluish eye whites threaded with blood vessels.",
       "thumbnail": "./eye/thumbnail.png",
       "layers": [
         {
           "type": "color",
-          "baseColor": "rgba(251, 252, 251, 1)"
+          "baseColor": "rgba(255, 247, 243, 1)"
         },
         {
           "type": "img",
           "src": "./eye/eye1.png",
           "name": "",
           "blendMode": "multiply",
-          "opacity": 1
+          "opacity": 0.25
         },
         {
           "type": "img",
           "src": "./eye/eye2.png",
+          "name": "",
+          "blendMode": "multiply",
+          "opacity": 0.55
+        },
+        {
+          "type": "img",
+          "src": "./eye/eye3.png",
           "name": "",
           "blendMode": "overlay",
           "opacity": 1
         },
         {
           "type": "img",
-          "src": "./eye/eye3.png",
+          "src": "./eye/eye4.png",
           "name": "",
           "blendMode": "color-burn",
-          "opacity": 0.9
+          "opacity": 0.95
         }
       ]
     },
     {
-      "id": "S02-S5",
+      "id": "S02-D05",
       "title": "Buzz Cut",
       "description": "Tendon-revealing skin and a cleanly shaved head.",
       "thumbnail": "./head/thumbnail.png",
@@ -121,56 +128,232 @@
       ]
     },
     {
-      "id": "B02-S6",
+      "id": "B02-S11",
       "title": "Solid Teeth",
       "description": "Radiant, healthy teeth with a subtle translucence.",
       "thumbnail": "./teeth/thumbnail.png",
       "layers": [
         {
           "type": "color",
-          "baseColor": "rgba(254, 248, 236, 1)"
+          "baseColor": "rgba(26, 31, 32, 1)"
         },
         {
           "type": "img",
           "src": "./teeth/teeth1.png",
           "name": "base",
-          "blendMode": "plus-darker",
+          "blendMode": "color-dodge",
           "opacity": 1
         },
         {
           "type": "img",
           "src": "./teeth/teeth2.png",
-          "name": "shade",
-          "blendMode": "plus-darker",
-          "opacity": 1
+          "name": "base",
+          "blendMode": "hard-light",
+          "opacity": 0.9
         },
         {
           "type": "img",
           "src": "./teeth/teeth3.png",
-          "name": "",
-          "blendMode": "overlay",
-          "opacity": 0.3
+          "name": "lighten",
+          "blendMode": "soft-light",
+          "opacity": 1
         },
         {
           "type": "img",
           "src": "./teeth/teeth4.png",
-          "name": "",
-          "blendMode": "plus-lighter",
-          "opacity": 0.1
+          "name": "shade",
+          "blendMode": "luminosity",
+          "opacity": 0.3
         },
         {
           "type": "img",
           "src": "./teeth/teeth5.png",
-          "name": "",
-          "blendMode": "color-dodge",
-          "opacity": 0.26
+          "name": "shade",
+          "blendMode": "multiply",
+          "opacity": 0.6
         },
         {
           "type": "img",
           "src": "./teeth/teeth6.png",
-          "name": "",
+          "name": "shade",
+          "blendMode": "color-burn",
+          "opacity": 0.3
+        },
+        {
+          "type": "img",
+          "src": "./teeth/teeth7.png",
+          "name": "lighten",
+          "blendMode": "overlay",
+          "opacity": 1
+        },
+        {
+          "type": "img",
+          "src": "./teeth/teeth8.png",
+          "name": "lighten",
+          "blendMode": "hard-light",
+          "opacity": 0.4
+        },
+        {
+          "type": "img",
+          "src": "./teeth/teeth9.png",
+          "name": "lighten",
           "blendMode": "soft-light",
+          "opacity": 0.6
+        },
+        {
+          "type": "img",
+          "src": "./teeth/teeth10.png",
+          "name": "light",
+          "blendMode": "plus-lighter",
+          "opacity": 0.2
+        },
+        {
+          "type": "img",
+          "src": "./teeth/teeth11.png",
+          "name": "texture detail",
+          "blendMode": "color-burn",
+          "opacity": 0.2
+        }
+      ]
+    },
+    {
+      "id": "N01-S06",
+      "title": "Gentle Breeze",
+      "description": "Shattered sunlight in the cool, dancing breeze.",
+      "thumbnail": "./wind/thumbnail.png",
+      "layers": [
+        {
+          "type": "color",
+          "baseColor": "rgba(242, 242, 255, 1)"
+        },
+        {
+          "type": "img",
+          "src": "./wind/wind1.png",
+          "name": "air flow",
+          "blendMode": "multiply",
+          "opacity": 1
+        },
+        {
+          "type": "img",
+          "src": "./wind/wind2.png",
+          "name": "air flow",
+          "blendMode": "lighten",
+          "opacity": 0.9
+        },
+        {
+          "type": "img",
+          "src": "./wind/wind3.png",
+          "name": "wind",
+          "blendMode": "screen",
+          "opacity": 0.55
+        },
+        {
+          "type": "img",
+          "src": "./wind/wind4.png",
+          "name": "sunlight",
+          "blendMode": "plus-darker",
+          "opacity": 0.66
+        },
+        {
+          "type": "img",
+          "src": "./wind/wind5.png",
+          "name": "sunlight",
+          "blendMode": "plus-lighter",
+          "opacity": 0.15
+        }
+      ]
+    },
+    {
+      "id": "T01-D06",
+      "title": "No Signal",
+      "description": "A no-signal screen with a moiré pattern.",
+      "thumbnail": "./screen/thumbnail.png",
+      "layers": [
+        {
+          "type": "color",
+          "baseColor": "rgba(79, 165, 208, 1)"
+        },
+        {
+          "type": "img",
+          "src": "./screen/screen1.png",
+          "name": "monitor pattern",
+          "blendMode": "color-burn",
+          "opacity": 0.5
+        },
+        {
+          "type": "img",
+          "src": "./screen/screen2.png",
+          "name": "vertical lines",
+          "blendMode": "hard-light",
+          "opacity": 1
+        },
+        {
+          "type": "img",
+          "src": "./screen/screen3.png",
+          "name": "wave",
+          "blendMode": "screen",
+          "opacity": 1
+        },
+        {
+          "type": "img",
+          "src": "./screen/screen4.png",
+          "name": "screen",
+          "blendMode": "hard-light",
           "opacity": 0.85
+        },
+        {
+          "type": "img",
+          "src": "./screen/screen5.png",
+          "name": "shade",
+          "blendMode": "multiply",
+          "opacity": 0.16
+        },
+        {
+          "type": "img",
+          "src": "./screen/screen6.png",
+          "name": "fingerprint",
+          "blendMode": "overlay",
+          "opacity": 0.5
+        }
+      ]
+    },
+    {
+      "id": "F01-D04",
+      "title": "Mala Soup",
+      "description": "Mala soup with a bold beef bone base and a layer of chili oil on top.",
+      "thumbnail": "./mala/thumbnail.png",
+      "layers": [
+        {
+          "type": "color",
+          "baseColor": "rgba(196, 30, 0, 1)"
+        },
+        {
+          "type": "img",
+          "src": "./mala/mala1.png",
+          "name": "base",
+          "blendMode": "multiply",
+          "opacity": 1
+        },
+        {
+          "type": "img",
+          "src": "./mala/mala2.png",
+          "name": "base",
+          "blendMode": "color-burn",
+          "opacity": 0.8
+        },
+        {
+          "type": "img",
+          "src": "./mala/mala3.png",
+          "name": "shade",
+          "blendMode": "lighten",
+          "opacity": 0.75
+        },
+        {
+          "type": "img",
+          "src": "./mala/mala4.png",
+          "name": "",
+          "blendMode": "screen",
+          "opacity": 1
         }
       ]
     }

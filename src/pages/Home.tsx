@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Left column: thumbnails */}
-      <div className="w-1/2 bg-black overflow-y-scroll p-4 space-y-4">
+      <div className="w-1/2 bg-black overflow-y-scroll">
         {loading ? (
           <p>Loading...</p>
         ) : (
@@ -23,7 +23,7 @@ export default function HomePage() {
               key={texture.id}
               src={`/textures/${texture.thumbnail.replace(/^\.\/|^\/+/, "")}`}
               alt={texture.title}
-              className="w-full cursor-pointer filter grayscale hover:grayscale-0 transition duration-200"
+              className="w-full filter grayscale hover:grayscale-0 transition duration-300 cursor-pointer"
               onClick={() => handleClick(texture.id)}
             />
           ))
