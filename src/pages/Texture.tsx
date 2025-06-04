@@ -55,17 +55,16 @@ export default function TexturePage() {
       className="relative w-full"
       style={{
         backgroundColor: baseColor,
-        height: `${totalHeight}px`, // ✅ 항상 고정된 높이 유지
+        height: `${totalHeight}px`,
       }}
     >
-      {/* Viewer 모드일 때 오버레이로 보여주기 */}
+      {/* inViewerMode */}
       {inViewerMode && (
-        <div className="fixed top-0 left-0 w-full h-full z-[9999] flex items-center justify-center bg-white">
+        <div className="fixed top-0 left-0 w-full h-full z-[9999]">
           <TextureViewer selectedTexture={texture} />
         </div>
       )}
 
-      {/* 레이어 하나씩 보여주기 */}
       {!inViewerMode &&
         texture.layers.map((layer, idx) => {
           const isVisible = idx <= currentLayerIndex;

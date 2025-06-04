@@ -28,8 +28,15 @@
           "type": "img",
           "src": "./skin/skin3.png",
           "name": "hair",
+          "blendMode": "multiply",
+          "opacity": 1
+        },
+        {
+          "type": "img",
+          "src": "./skin/skin4.png",
+          "name": "hair",
           "blendMode": "plus-darker",
-          "opacity": 0.3
+          "opacity": 0.2
         }
       ]
     },

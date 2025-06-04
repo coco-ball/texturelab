@@ -12,4 +12,12 @@ body {
 
 p {
   padding: 0;
+  margin: 0;
+}
+
+#root {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  margin: 0;
 }

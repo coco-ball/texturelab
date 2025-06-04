@@ -21,7 +21,7 @@ export default function HomePage() {
           textures.map((texture) => (
             <img
               key={texture.id}
-              src={texture.thumbnail}
+              src={`/textures/${texture.thumbnail.replace(/^\.\/|^\/+/, "")}`}
               alt={texture.title}
               className="w-full cursor-pointer filter grayscale hover:grayscale-0 transition duration-200"
               onClick={() => handleClick(texture.id)}
@@ -31,9 +31,9 @@ export default function HomePage() {
       </div>
 
       {/* Right column: header + content */}
-      <div className="w-1/2 p-6">
+      <div className="w-1/2 p-[0.5rem]">
         {/* Header */}
-        <header className="flex items-center justify-between">
+        <header className="flex items-center justify-between mb-[2rem]">
           <p onClick={() => setContent("home")} className="cursor-pointer">
             Texture Lab
           </p>
@@ -54,7 +54,11 @@ export default function HomePage() {
         <div className="mt-8 space-y-3 text-sm text-gray-800 font-mono">
           {content === "home" &&
             textures.map((texture) => (
-              <p key={texture.id}>
+              <p
+                key={texture.id}
+                className="pb-[0.25rem] cursor-pointer"
+                onClick={() => handleClick(texture.id)}
+              >
                 {texture.id} &nbsp;&nbsp; {texture.title}
               </p>
             ))}

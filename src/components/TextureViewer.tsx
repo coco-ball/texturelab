@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { TextureData } from "../types";
+import "./TextureViewer.css";
 
 export default function TextureViewer({
   selectedTexture,
